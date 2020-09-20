@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import ImgElement from './ImgElement';
+import PlaceholderContainer from './PlaceholderContainer';
+import ImgBtn from './ImgBtn';
 import { UrlContext } from '../context/UrlContext';
 import { CounterContext } from '../context/CounterContext';
 
@@ -8,18 +10,25 @@ function ImgElementList() {
   const {cutedUrl} = useContext(UrlContext);
   const { counter, dispatch } = useContext(CounterContext)
   
-    return (                                        
-    <ul className="Img">
-      <button onClick={() => dispatch({type: 'INCREASE_COUNTER',counter})}>Next</button>
-      <button onClick={() => dispatch({type: 'DECREASE_COUNTER',counter})}>Previous</button>
+    return (         
+    <>
+      <div>                               
+      <ImgBtn  counter dispatch={dispatch} typeFunction='DECREASE_COUNTER' 
+        startValue='Start here' mainValue='Previous'/>
+      <ImgBtn  counter dispatch={dispatch} typeFunction='INCREASE_COUNTER' 
+        startValue='Or here' mainValue='Next'/>      
+      </div>
+    <ul className="imgList">
       {
         counter === null ? 
-        <div><h1>Please click and fire first tree images :)</h1></div> 
+        <PlaceholderContainer />
         :
-      cutedUrl.map((url, ind) => {
-        return <ImgElement key={ind} url={url[counter]} />
-      })}
+        cutedUrl.map((url, ind) => {
+        return <ImgElement key={ind} url={url[counter]} className={counter}/>
+      })
+      }
     </ul>
+    </>
   );
     }
   export default ImgElementList;
