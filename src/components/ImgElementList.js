@@ -13,9 +13,9 @@ function ImgElementList() {
     return (         
     <>
       <div>                               
-      <ImgBtn  counter dispatch={dispatch} typeFunction='DECREASE_COUNTER' 
+      <ImgBtn  counter={counter} dispatch={dispatch} typeFunction='DECREASE_COUNTER' 
         startValue='Start here' mainValue='Previous'/>
-      <ImgBtn  counter dispatch={dispatch} typeFunction='INCREASE_COUNTER' 
+      <ImgBtn  counter={counter} dispatch={dispatch} typeFunction='INCREASE_COUNTER' 
         startValue='Or here' mainValue='Next'/>      
       </div>
     <ul className="imgList">
